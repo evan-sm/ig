@@ -156,7 +156,7 @@ func (s *SuperAgent) Stories(ids ...interface{}) []byte {
 	}
 	s.QueryString = strings.TrimSuffix(s.QueryString, "&")
 	url := storiesUrl + "?" + s.QueryString
-	pp.Printf("%v\n", url)
+	pp.Printf("URL: %v\n", url)
 	json := s.getStories(url)
 
 	//	for k, v := range s.StoriesStruct {
