@@ -155,9 +155,9 @@ func (s *SuperAgent) Stories(ids ...interface{}) []byte {
 
 	}
 	s.QueryString = strings.TrimSuffix(s.QueryString, "&")
-	storiesUrl += "?" + s.QueryString
-	pp.Printf("%v\n", storiesUrl)
-	json := s.getStories()
+	url := storiesUrl + "?" + s.QueryString
+	pp.Printf("%v\n", url)
+	json := s.getStories(url)
 
 	//	for k, v := range s.StoriesStruct {
 	//		pp.Printf("\nk: %v v: %v\n", k, v[k].User.Username)
@@ -167,9 +167,9 @@ func (s *SuperAgent) Stories(ids ...interface{}) []byte {
 	return json
 }
 
-func (s *SuperAgent) getStories() []byte {
+func (s *SuperAgent) getStories(url string) []byte {
 
-	resp, err := s.Client.R().Get(storiesUrl)
+	resp, err := s.Client.R().Get(url)
 	if err != nil {
 		log.Printf("error: %v\n", err)
 	}
